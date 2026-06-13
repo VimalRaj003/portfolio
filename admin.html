@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Dashboard - Portfolio Management System">
+    <title>Admin Dashboard - Portfolio</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-box">
+            <div class="login-header">
+                <i class="fas fa-lock"></i>
+                <h1>Admin Login</h1>
+                <p>Portfolio Management System</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="adminUsername">Username</label>
+                    <input type="text" id="adminUsername" name="username" placeholder="admin" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" name="password" placeholder="••••••••" required>
+                </div>
+                
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="rememberMe" name="rememberMe">
+                    <label for="rememberMe">Remember me</label>
+                </div>
+                
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                
+                <div class="login-info">
+                    <p><strong>Demo Credentials:</strong></p>
+                    <p>Username: <code>admin</code></p>
+                    <p>Password: <code>password123</code></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="dashboard" id="dashboard" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Admin Panel</span>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="overview">
+                    <i class="fas fa-home"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="nav-item" data-page="content">
+                    <i class="fas fa-edit"></i>
+                    <span>Edit Content</span>
+                </a>
+                <a href="#" class="nav-item" data-page="projects">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Manage Projects</span>
+                </a>
+                <a href="#" class="nav-item" data-page="skills">
+                    <i class="fas fa-star"></i>
+                    <span>Manage Skills</span>
+                </a>
+                <a href="#" class="nav-item" data-page="services">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Manage Services</span>
+                </a>
+                <a href="#" class="nav-item" data-page="testimonials">
+                    <i class="fas fa-comment"></i>
+                    <span>Manage Testimonials</span>
+                </a>
+                <a href="#" class="nav-item" data-page="experience">
+                    <i class="fas fa-history"></i>
+                    <span>Manage Experience</span>
+                </a>
+                <a href="#" class="nav-item" data-page="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="btn-logout" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 id="pageTitle">Overview</h1>
+                <div class="header-actions">
+                    <button class="btn-icon" id="viewWebsite" title="View Website">
+                        <i class="fas fa-external-link-alt"></i>
+                    </button>
+                    <button class="btn-icon" id="saveAll" title="Save All Changes">
+                        <i class="fas fa-save"></i>
+                    </button>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40x40/667eea/ffffff?text=Admin" alt="Admin" class="user-avatar">
+                        <span id="userName">Admin User</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Pages Content -->
+            <div class="page-content">
+                <!-- Overview Page -->
+                <section id="overviewPage" class="page active">
+                    <h2>Dashboard Overview</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-file-alt"></i>
+                            <div>
+                                <h3 id="totalProjects">6</h3>
+                                <p>Total Projects</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-briefcase"></i>
+                            <div>
+                                <h3 id="totalServices">6</h3>
+                                <p>Services Offered</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <h3 id="totalSkills">9</h3>
+                                <p>Skills Listed</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-quote-left"></i>
+                            <div>
+                                <h3 id="totalTestimonials">3</h3>
+                                <p>Testimonials</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <h3>Quick Actions</h3>
+                        <div class="action-buttons">
+                            <button class="btn-action" onclick="switchPage('content')">
+                                <i class="fas fa-edit"></i> Edit Hero & About
+                            </button>
+                            <button class="btn-action" onclick="switchPage('projects')">
+                                <i class="fas fa-plus"></i> Add New Project
+                            </button>
+                            <button class="btn-action" onclick="switchPage('skills')">
+                                <i class="fas fa-plus"></i> Add New Skill
+                            </button>
+                            <button class="btn-action" onclick="switchPage('settings')">
+                                <i class="fas fa-download"></i> Backup Data
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="recent-activity">
+                        <h3>Recent Changes</h3>
+                        <div id="activityLog" class="activity-list">
+                            <p class="empty-state">No recent changes yet</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Edit Content Page -->
+                <section id="contentPage" class="page">
+                    <h2>Edit Website Content</h2>
+                    
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="hero">Hero Section</button>
+                        <button class="tab-btn" data-tab="about">About Section</button>
+                        <button class="tab-btn" data-tab="contact">Contact Info</button>
+                    </div>
+
+                    <!-- Hero Section -->
+                    <div id="heroTab" class="tab-content active">
+                        <h3>Hero Section</h3>
+                        <form id="heroForm" class="edit-form">
+                            <div class="form-group">
+                                <label>Hero Title</label>
+                                <input type="text" id="heroTitle" placeholder="Welcome to my Creative Space">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Hero Subtitle (Short Description)</label>
+                                <input type="text" id="heroSubtitle" placeholder="I'm a Full-Stack Developer">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Hero Description</label>
+                                <textarea id="heroDescription" rows="4" placeholder="Enter full description..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Profile Image</label>
+                                <div class="image-upload">
+                                    <input type="file" id="profileImage" accept="image/*">
+                                    <div id="profileImagePreview" class="image-preview">
+                                        <img src="https://via.placeholder.com/400x400/667eea/ffffff?text=Profile" alt="Profile">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn-save" onclick="saveHeroContent()">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- About Section -->
+                    <div id="aboutTab" class="tab-content">
+                        <h3>About Section</h3>
+                        <form id="aboutForm" class="edit-form">
+                            <div class="form-group">
+                                <label>Your Name</label>
+                                <input type="text" id="aboutName" placeholder="Your Name">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Bio/About Text</label>
+                                <textarea id="aboutBio" rows="5" placeholder="Tell your story..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>About Image</label>
+                                <div class="image-upload">
+                                    <input type="file" id="aboutImage" accept="image/*">
+                                    <div id="aboutImagePreview" class="image-preview">
+                                        <img src="https://via.placeholder.com/500x500/667eea/ffffff?text=About" alt="About">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Badge Text (e.g., "5+ Years Experience")</label>
+                                <input type="text" id="aboutBadge" placeholder="5+ Years Experience">
+                            </div>
+
+                            <button type="button" class="btn-save" onclick="saveAboutContent()">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div id="contactTab" class="tab-content">
+                        <h3>Contact Information</h3>
+                        <form id="contactForm" class="edit-form">
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="contactEmail" placeholder="hello@yourname.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" id="contactPhone" placeholder="+1 (234) 567-8900">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" id="contactLocation" placeholder="San Francisco, CA">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Twitter URL</label>
+                                <input type="url" id="socialTwitter" placeholder="https://twitter.com/yourname">
+                            </div>
+
+                            <div class="form-group">
+                                <label>LinkedIn URL</label>
+                                <input type="url" id="socialLinkedin" placeholder="https://linkedin.com/in/yourname">
+                            </div>
+
+                            <div class="form-group">
+                                <label>GitHub URL</label>
+                                <input type="url" id="socialGithub" placeholder="https://github.com/yourname">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Instagram URL</label>
+                                <input type="url" id="socialInstagram" placeholder="https://instagram.com/yourname">
+                            </div>
+
+                            <button type="button" class="btn-save" onclick="saveContactContent()">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Projects Management Page -->
+                <section id="projectsPage" class="page">
+                    <h2>Manage Projects</h2>
+                    <button class="btn-primary" onclick="showAddProjectForm()">
+                        <i class="fas fa-plus"></i> Add New Project
+                    </button>
+
+                    <div id="projectsList" class="items-list"></div>
+
+                    <!-- Add/Edit Project Form -->
+                    <div id="projectFormContainer" class="form-container" style="display: none;">
+                        <h3 id="projectFormTitle">Add New Project</h3>
+                        <form id="projectForm" class="edit-form">
+                            <div class="form-group">
+                                <label>Project Name</label>
+                                <input type="text" id="projectName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Project Description</label>
+                                <textarea id="projectDescription" rows="3" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select id="projectCategory" required>
+                                    <option value="web">Web Design</option>
+                                    <option value="app">App Design</option>
+                                    <option value="branding">Branding</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Project Image</label>
+                                <input type="file" id="projectImage" accept="image/*">
+                                <div id="projectImagePreview" class="image-preview"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Technologies (comma separated)</label>
+                                <input type="text" id="projectTech" placeholder="React, Node.js, MongoDB">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Live Demo URL</label>
+                                <input type="url" id="projectLiveUrl">
+                            </div>
+
+                            <div class="form-group">
+                                <label>GitHub URL</label>
+                                <input type="url" id="projectGithubUrl">
+                            </div>
+
+                            <div class="form-buttons">
+                                <button type="button" class="btn-save" onclick="saveProject()">
+                                    <i class="fas fa-save"></i> Save Project
+                                </button>
+                                <button type="button" class="btn-cancel" onclick="cancelProjectForm()">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Skills Management Page -->
+                <section id="skillsPage" class="page">
+                    <h2>Manage Skills</h2>
+                    <button class="btn-primary" onclick="showAddSkillForm()">
+                        <i class="fas fa-plus"></i> Add New Skill
+                    </button>
+
+                    <div id="skillsList" class="items-list"></div>
+
+                    <!-- Add/Edit Skill Form -->
+                    <div id="skillFormContainer" class="form-container" style="display: none;">
+                        <h3 id="skillFormTitle">Add New Skill</h3>
+                        <form id="skillForm" class="edit-form">
+                            <div class="form-group">
+                                <label>Category</label>
+                                <input type="text" id="skillCategory" placeholder="e.g., Frontend Development" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Skill Name</label>
+                                <input type="text" id="skillName" placeholder="e.g., HTML5 & CSS3" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Proficiency Level (%)</label>
+                                <div class="slider-group">
+                                    <input type="range" id="skillLevel" min="0" max="100" value="80">
+                                    <span id="skillLevelValue">80%</span>
+                                </div>
+                            </div>
+
+                            <div class="form-buttons">
+                                <button type="button" class="btn-save" onclick="saveSkill()">
+                                    <i class="fas fa-save"></i> Save Skill
+                                </button>
+                                <button type="button" class="btn-cancel" onclick="cancelSkillForm()">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Services Management Page -->
+                <section id="servicesPage" class="page">
+                    <h2>Manage Services</h2>
+                    <button class="btn-primary" onclick="showAddServiceForm()">
+                        <i class="fas fa-plus"></i> Add New Service
+                    </button>
+
+                    <div id="servicesList" class="items-list"></div>
+
+                    <!-- Add/Edit Service Form -->
+                    <div id="serviceFormContainer" class="form-container" style="display: none;">
+                        <h3 id="serviceFormTitle">Add New Service</h3>
+                        <form id="serviceForm" class="edit-form">
+                            <div class="form-group">
+                                <label>Service Name</label>
+                                <input type="text" id="serviceName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Service Description</label>
+                                <textarea id="serviceDescription" rows="3" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Icon Class (Font Awesome)</label>
+                                <input type="text" id="serviceIcon" placeholder="fas fa-code" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Features (one per line)</label>
+                                <textarea id="serviceFeatures" rows="4" placeholder="Feature 1&#10;Feature 2&#10;Feature 3"></textarea>
+                            </div>
+
+                            <div class="form-buttons">
+                                <button type="button" class="btn-save" onclick="saveService()">
+                                    <i class="fas fa-save"></i> Save Service
+                                </button>
+                                <button type="button" class="btn-cancel" onclick="cancelServiceForm()">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Testimonials Management Page -->
+                <section id="testimonialsPage" class="page">
+                    <h2>Manage Testimonials</h2>
+                    <button class="btn-primary" onclick="showAddTestimonialForm()">
+                        <i class="fas fa-plus"></i> Add New Testimonial
+                    </button>
+
+                    <div id="testimonialsList" class="items-list"></div>
+
+                    <!-- Add/Edit Testimonial Form -->
+                    <div id="testimonialFormContainer" class="form-container" style="display: none;">
+                        <h3 id="testimonialFormTitle">Add New Testimonial</h3>
+                        <form id="testimonialForm" class="edit-form">
+                            <div class="form-group">
+                                <label>Client Name</label>
+                                <input type="text" id="testimonialName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Client Title/Company</label>
+                                <input type="text" id="testimonialTitle" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Testimonial Text</label>
+                                <textarea id="testimonialText" rows="4" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Rating</label>
+                                <select id="testimonialRating" required>
+                                    <option value="5">5 Stars</option>
+                                    <option value="4">4 Stars</option>
+                                    <option value="3">3 Stars</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Client Avatar</label>
+                                <input type="file" id="testimonialAvatar" accept="image/*">
+                                <div id="testimonialAvatarPreview" class="image-preview"></div>
+                            </div>
+
+                            <div class="form-buttons">
+                                <button type="button" class="btn-save" onclick="saveTestimonial()">
+                                    <i class="fas fa-save"></i> Save Testimonial
+                                </button>
+                                <button type="button" class="btn-cancel" onclick="cancelTestimonialForm()">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Experience Management Page -->
+                <section id="experiencePage" class="page">
+                    <h2>Manage Experience & Education</h2>
+                    <button class="btn-primary" onclick="showAddExperienceForm()">
+                        <i class="fas fa-plus"></i> Add New Entry
+                    </button>
+
+                    <div id="experienceList" class="items-list"></div>
+
+                    <!-- Add/Edit Experience Form -->
+                    <div id="experienceFormContainer" class="form-container" style="display: none;">
+                        <h3 id="experienceFormTitle">Add Experience/Education</h3>
+                        <form id="experienceForm" class="edit-form">
+                            <div class="form-group">
+                                <label>Type</label>
+                                <select id="experienceType" required>
+                                    <option value="work">Work Experience</option>
+                                    <option value="education">Education</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" id="experienceTitle" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Company/School</label>
+                                <input type="text" id="experienceCompany" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Period (e.g., "2021 - 2023")</label>
+                                <input type="text" id="experiencePeriod" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea id="experienceDescription" rows="4" required></textarea>
+                            </div>
+
+                            <div class="form-buttons">
+                                <button type="button" class="btn-save" onclick="saveExperience()">
+                                    <i class="fas fa-save"></i> Save Entry
+                                </button>
+                                <button type="button" class="btn-cancel" onclick="cancelExperienceForm()">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Settings Page -->
+                <section id="settingsPage" class="page">
+                    <h2>Settings & Backup</h2>
+                    
+                    <div class="settings-section">
+                        <h3>Admin Credentials</h3>
+                        <form id="credentialsForm" class="edit-form">
+                            <div class="form-group">
+                                <label>Current Username</label>
+                                <input type="text" id="currentUsername" disabled value="admin">
+                            </div>
+
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" id="newPassword" placeholder="Leave blank to keep current password">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Confirm Password</label>
+                                <input type="password" id="confirmPassword" placeholder="Confirm new password">
+                            </div>
+
+                            <button type="button" class="btn-save" onclick="updateCredentials()">
+                                <i class="fas fa-save"></i> Update Credentials
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Data Management</h3>
+                        <div class="action-buttons">
+                            <button class="btn-action" onclick="exportData()">
+                                <i class="fas fa-download"></i> Export All Data
+                            </button>
+                            <button class="btn-action" onclick="showImportForm()">
+                                <i class="fas fa-upload"></i> Import Data
+                            </button>
+                            <button class="btn-action btn-danger" onclick="resetToDefault()">
+                                <i class="fas fa-redo"></i> Reset to Default
+                            </button>
+                        </div>
+
+                        <div id="importFormContainer" style="display: none; margin-top: 20px;">
+                            <div class="form-group">
+                                <label>Select JSON File to Import</label>
+                                <input type="file" id="importFile" accept=".json">
+                            </div>
+                            <button type="button" class="btn-save" onclick="importData()">
+                                <i class="fas fa-upload"></i> Import
+                            </button>
+                            <button type="button" class="btn-cancel" onclick="hideImportForm()">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>System Information</h3>
+                        <div class="info-box">
+                            <p><strong>Portfolio Version:</strong> 1.0.0</p>
+                            <p><strong>Last Updated:</strong> <span id="lastUpdated">Never</span></p>
+                            <p><strong>Storage Used:</strong> <span id="storageUsed">0 KB</span></p>
+                            <p><strong>Browser:</strong> <span id="browserInfo">Unknown</span></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notificationToast" class="notification"></div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>
